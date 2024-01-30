@@ -1,0 +1,25 @@
+{
+  "name": "restapi-project",
+  "version": "1.0.0",
+  "description": "my first nodeJs rest api project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "restApi",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "ihsanullah-yasar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
