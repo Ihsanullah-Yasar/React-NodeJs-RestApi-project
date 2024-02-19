@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import './Image.css';
+import "./Image.css";
 
-const image = props => (
-  <div
+const image = (props) => (
+  <img
     className="image"
     style={{
-      backgroundImage: `url('${props.imageUrl}')`,
-      backgroundSize: props.contain ? 'contain' : 'cover',
-      backgroundPosition: props.left ? 'left' : 'center'
+      backgroundImage: `url(${props.imageUrl})`,
+      backgroundSize: props.contain ? "contain" : "cover",
+      backgroundPosition: props.left ? "left" : "center",
     }}
+    src={props.imageUrl}
+    alt="post illustration"
   />
 );
 
