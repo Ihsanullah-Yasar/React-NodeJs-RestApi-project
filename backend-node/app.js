@@ -6,6 +6,8 @@ const multer = require("multer");
 const feedRoutes = require("./routes/feedRoutes");
 const authRoutes = require("./routes/authRoutes");
 const app = express();
+const http = require("http");
+const server = http.createServer(app);
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "images");
@@ -43,7 +45,12 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Methods",
     "OPTIONS, GET, POST, PUT, PATCH, DELETE"
   );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With, Content-Type, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  require("cors")();
   next();
 });
 
@@ -61,10 +68,12 @@ mongoose
   )
   .then((res) => {
     console.log("connected to mongodb");
-    const server = app.listen(8080);
     const io = require("./socket").init(server);
-    io.on("connection", (socket) => {
+    io.on("connect", (socket) => {
       console.log("client connected");
+    });
+    server.listen(8080, () => {
+      console.log("server is running");
     });
   })
   .catch((err) => console.log(err));
